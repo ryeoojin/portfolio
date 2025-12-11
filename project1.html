@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 상세 - 앱 디자인</title>
+    <style>
+        /* 1. 기본 스타일 (메인 페이지와 통일감 유지) */
+        body {
+            font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.8; /* 글줄 간격을 넓게 해서 읽기 편하게 */
+        }
+
+       /* 2. 상단 네비게이션 */
+        nav {
+            position: sticky; 
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 1000; 
+            padding: 20px 40px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .back-btn {
+            text-decoration: none; /* 밑줄 제거 */
+            color: #333;           /* 글자색을 진한 회색(검은색)으로 설정 */
+            font-weight: bold;     /* 글자를 굵게 */
+            font-size: 1.1rem;
+        }
+        
+        /* 혹시 클릭 후 보라색이 되는 것을 방지 */
+        .back-btn:visited {
+            color: #333;
+        }
+        
+        /* 마우스 올렸을 때의 디자인 */
+        .back-btn:hover {
+            color: #555; /* 살짝 연해지게 */
+        }
+
+        /* 3. 본문 레이아웃 컨테이너 */
+        .container {
+            max-width: 800px; /* 글을 읽기 가장 편한 너비 */
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* 4. 프로젝트 헤더 (제목 + 설명 표) */
+        .project-header {
+            margin-bottom: 50px;
+            border-bottom: 2px solid #333; /* 제목 아래 굵은 선 */
+            padding-bottom: 30px;
+        }
+        .project-header h1 {
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+        }
+        .project-header .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* 프로젝트 정보 표 (역할, 툴, 기간 등) */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3칸으로 나누기 */
+            gap: 20px;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .info-item h4 { margin: 0 0 5px 0; color: #555; }
+        .info-item p { margin: 0; font-weight: bold; }
+
+        /* 5. 본문 내용 (이미지 + 텍스트) */
+        .content img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid #eee;
+        }
+        .content p {
+            margin-bottom: 40px;
+            font-size: 1.05rem;
+            word-break: keep-all; /* 한글 단어 끊김 방지 */
+        }
+
+        /* 6. 하단 푸터 */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #eee;
+            margin-top: 60px;
+            color: #999;
+        }
+
+        /* 모바일 화면 대응 */
+        @media (max-width: 600px) {
+            .info-grid { grid-template-columns: 1fr; } /* 모바일은 1줄로 */
+            .project-header h1 { font-size: 2rem; }
+        }
+
+	/* 유튜브 영상을 감싸는 박스 (반응형 16:9 비율) */
+        .video-wrap {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 비율 유지의 비밀 */
+            height: 0;
+            margin-bottom: 30px;
+            background: #000;
+        }
+
+        .video-wrap iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="portfolio.html" class="back-btn">← List</a> 
+    </nav>
+
+    <div class="container">
+        
+        <header class="project-header">
+            <h1>Sonic Spectrum</h1>
+            <p class="subtitle">자연과 사회의 소리를 시각적으로 표현한 체험형 전시공간</p>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <h4>Role (역할)</h4>
+                    <p>공간 디자인</p>
+                </div>
+                <div class="info-item">
+                    <h4>Tools (사용 툴)</h4>
+                    <p>SketchUp, Enscape</p>
+                </div>
+                <div class="info-item">
+                    <h4>Date (작업 기간)</h4>
+                    <p>2025.03 </p>
+                </div>
+            </div>
+        </header>
+
+	<section class="content">
+            <img src="work1.jpg" alt="프로젝트 메인 이미지">
+
+            <p>
+                <b>프로젝트 시연 영상</b><br>
+                실제 앱이 구동되는 모습을 아래 영상에서 확인하실 수 있습니다.
+            </p>
+
+            <video src="my_video.mp4" controls muted autoplay playsinline style="width: 100%; border-radius: 8px; margin-bottom: 30px; border: 1px solid #eee;">
+                죄송합니다. 브라우저가 이 동영상 형식을 지원하지 않습니다.
+            </video>
+
+            <p>
+                <b>디자인 의도</b><br>
+                사용자가 메뉴를 고르고 결제하기까지의 단계를 5단계에서 3단계로 줄이는 것을 목표로 했습니다.
+            </p>
+        </section>
+            
+            <p>
+                <b>3. 결과 및 성과</b><br>
+                프로토타입 테스트 결과, 사용자들의 작업 수행 시간이 평균 20% 단축되었습니다.
+                이 프로젝트를 통해 Figma의 오토 레이아웃 기능을 능숙하게 다룰 수 있게 되었습니다.
+            </p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>© 2025 My Portfolio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

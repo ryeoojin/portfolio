@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        /* 1. 기본 스타일 */
+        body {
+            font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* 왼쪽 1 : 오른쪽 2 비율 */
+            gap: 40px;
+        }
+
+        /* 2. 왼쪽 사이드바 (프로필 정보) */
+        .profile-section {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            height: fit-content; /* 내용물만큼만 높이 잡기 */
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* 동그라미 만들기 */
+            background-color: #ddd; /* 사진 없을 때 회색 */
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .name { font-size: 1.8rem; margin: 10px 0; font-weight: bold; }
+        .job-title { color: #666; margin-bottom: 30px; display: block; }
+
+        .contact-info { text-align: left; margin-top: 30px; font-size: 0.9rem; }
+        .contact-info p { margin: 10px 0; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .contact-label { font-weight: bold; color: #555; margin-right: 10px; }
+
+        /* 스킬 태그 디자인 */
+        .skills { text-align: left; margin-top: 30px; }
+        .skill-tag {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 0 5px 8px 0;
+            color: #555;
+        }
+
+        /* 3. 오른쪽 메인 (경력 및 상세) */
+        .detail-section {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            border-left: 5px solid #333; /* 제목 옆 파란 선 */
+            padding-left: 15px;
+            margin-bottom: 30px;
+            margin-top: 0;
+        }
+
+        /* 경력 리스트 스타일 */
+        .experience-item {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        .experience-item:last-child { border-bottom: none; }
+        
+        .date { color: #888; font-size: 0.9rem; margin-bottom: 5px; display: block; }
+        .company { font-size: 1.1rem; font-weight: bold; margin: 0 0 10px 0; }
+        .description { color: #555; font-size: 0.95rem; }
+
+        /* 네비게이션 (메인으로 가기) */
+        .nav-back {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* 모바일 반응형 (세로로 쌓기) */
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="portfolio.html" class="nav-back">← Home</a>
+
+    <div class="container">
+        
+        <aside class="profile-section">
+            <img src="profile.jpg" alt="프로필 사진" class="profile-img">
+            
+            <div class="name">김려진</div>
+            <span class="job-title">UI/UX Designer</span>
+
+            <div class="skills">
+                <p style="font-weight: bold; margin-bottom: 10px;">Skills</p>
+                <span class="skill-tag">Photoshop</span>
+                <span class="skill-tag">Illustrator</span>
+                <span class="skill-tag">Figma</span>
+                <span class="skill-tag">HTML/CSS</span>
+                <span class="skill-tag">Premiere Pro</span>
+            </div>
+
+            <div class="contact-info">
+                <p><span class="contact-label">Phone</span> 010-9331-8685</p>
+                <p><span class="contact-label">Email</span> rjkim0111@gmila.com</p>
+                <p><span class="contact-label">Addr</span> 서울시 동작구</p>
+            </div>
+        </aside>
+
+        <main class="detail-section">
+            
+            <section>
+                <h2>About Me</h2>
+                <p style="color: #555; line-height: 1.8;">
+                    안녕하세요. 사용자 경험을 최우선으로 생각하는 디자이너 김려진입니다.<br>
+                    단순히 보기에 예쁜 디자인이 아니라, 논리적이고 사용하기 편한 디자인을 추구합니다.<br>
+                    새로운 툴을 배우는 것을 두려워하지 않으며, 현재는 웹 코딩 능력까지 겸비하기 위해 노력하고 있습니다.
+                </p>
+            </section>
+
+            <br><br>
+
+            <section>
+                <h2>Education</h2>
+                <div class="experience-item">
+                    <span class="date">2022.03 - 2025.02</span>
+                    <h3 class="company">협성대학교 실내디자인학과 졸업</h3>
+                    <p class="description">UI/UX 디자인 전공 / 학점 4.0</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Experience</h2>
+                <div class="experience-item">
+                    <span class="date">2023.01 - 2024.01</span>
+                    <h3 class="company">OO 에이전시 인턴</h3>
+                    <p class="description">
+                        - 브랜드 SNS 콘텐츠 디자인 제작<br>
+                        - 제안서 PPT 디자인 보조<br>
+                        - 클라이언트 미팅 참여 및 회의록 작성
+                    </p>
+                </div>
+                <div class="experience-item">
+                    <span class="date">2022.06 - 2022.12</span>
+                    <h3 class="company">프리랜서 디자이너</h3>
+                    <p class="description">
+                        - 스타트업 로고 디자인 외주 3건 진행<br>
+                        - 카페 브랜딩 패키지 디자인
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Certificate</h2>
+                <div class="experience-item" style="border:none;">
+                    <p class="description">
+                        • 컴퓨터그래픽스운용기능사 (2021)<br>
+                        • GTQ 1급 (2020)<br>
+                        • 컬러리스트 기사 (2022)
+                    </p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
