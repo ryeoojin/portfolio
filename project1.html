@@ -3,189 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>프로젝트 상세 - 앱 디자인</title>
+    <title>Sonic Spectrum - Exhibition Design</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    
     <style>
-        /* 1. 기본 스타일 (메인 페이지와 통일감 유지) */
+        /* 1. 기본 스타일 */
         body {
-            font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            line-height: 1.8; /* 글줄 간격을 넓게 해서 읽기 편하게 */
+            font-family: 'Pretendard', sans-serif;
+            margin: 0; padding: 0;
+            color: #333; line-height: 1.7;
+            background-color: #fff;
+            word-break: keep-all;
         }
 
-       /* 2. 상단 네비게이션 */
+        /* 2. 네비게이션 */
         nav {
-            position: sticky; 
-            top: 0;
+            position: sticky; top: 0;
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(5px);
-            z-index: 1000; 
+            z-index: 1000;
             padding: 20px 40px;
             border-bottom: 1px solid #eee;
         }
-
-        .back-btn {
-            text-decoration: none; /* 밑줄 제거 */
-            color: #333;           /* 글자색을 진한 회색(검은색)으로 설정 */
-            font-weight: bold;     /* 글자를 굵게 */
-            font-size: 1.1rem;
-        }
+        .back-btn { text-decoration: none; color: #333; font-weight: bold; font-size: 1.1rem; }
         
-        /* 혹시 클릭 후 보라색이 되는 것을 방지 */
-        .back-btn:visited {
-            color: #333;
-        }
-        
-        /* 마우스 올렸을 때의 디자인 */
-        .back-btn:hover {
-            color: #555; /* 살짝 연해지게 */
-        }
-
-        /* 3. 본문 레이아웃 컨테이너 */
+        /* 3. 컨테이너 */
         .container {
-            max-width: 800px; /* 글을 읽기 가장 편한 너비 */
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 60px 20px 100px;
         }
 
-        /* 4. 프로젝트 헤더 (제목 + 설명 표) */
-        .project-header {
-            margin-bottom: 50px;
-            border-bottom: 2px solid #333; /* 제목 아래 굵은 선 */
-            padding-bottom: 30px;
+       /* 4. 헤더 (수정됨: 녹색 포인트 컬러 적용) */
+        .project-header { text-align: center; margin-bottom: 60px; }
+        
+        /* 타원형 배지 (녹색 배경) */
+        .badge {
+            display: inline-block; 
+            background: #2E7D32; /* [수정] 진한 녹색 배경 */
+            color: #fff; /* 글씨는 흰색 유지 */
+            padding: 6px 14px; border-radius: 20px;
+            font-size: 0.9rem; font-weight: bold; margin-bottom: 20px;
         }
-        .project-header h1 {
-            font-size: 2.5rem;
-            margin: 0 0 10px 0;
+        
+        /* 메인 타이틀 (녹색 글씨) */
+        .project-title { 
+            font-size: 2.5rem; margin: 0 0 20px 0; letter-spacing: -1px; font-weight: 800;
+            color: #2E7D32; /* [수정] 배지와 같은 녹색으로 깔맞춤 */
         }
-        .project-header .subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
+        
+        .project-desc { font-size: 1.15rem; color: #555; max-width: 760px; margin: 0 auto; font-weight: 500; }
 
-        /* 프로젝트 정보 표 (역할, 툴, 기간 등) */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3칸으로 나누기 */
-            gap: 20px;
-            background-color: #f4f4f4;
-            padding: 20px;
-            border-radius: 8px;
-            font-size: 0.9rem;
+        .overview-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 20px; margin-top: 50px;
+            border-top: 2px solid #333; border-bottom: 1px solid #eee;
+            padding: 30px 0; text-align: left;
         }
-        .info-item h4 { margin: 0 0 5px 0; color: #555; }
-        .info-item p { margin: 0; font-weight: bold; }
+        .ov-item strong { display: block; font-size: 0.85rem; color: #888; margin-bottom: 8px; letter-spacing: 1px; }
+        .ov-item span { font-size: 1.05rem; font-weight: bold; color: #111; }
 
-        /* 5. 본문 내용 (이미지 + 텍스트) */
-        .content img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            border: 1px solid #eee;
+        /* 5. 이미지 및 섹션 */
+        .section-title {
+            font-size: 1.6rem; margin: 100px 0 30px 0;
+            border-left: 5px solid #333; padding-left: 20px; font-weight: 700;
         }
-        .content p {
+        .sub-title {
+            font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; display: block; color: #111;
+        }
+        .full-img { width: 100%; height: auto; display: block; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .caption { text-align: center; color: #888; font-size: 0.9rem; margin-bottom: 60px; }
+
+        /* 배경 설명 박스 */
+        .text-box {
+            background-color: #f8f8f8; padding: 40px; border-radius: 12px;
             margin-bottom: 40px;
-            font-size: 1.05rem;
-            word-break: keep-all; /* 한글 단어 끊김 방지 */
         }
+        .text-box p { margin: 0 0 15px 0; color: #444; }
 
-        /* 6. 하단 푸터 */
-        footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid #eee;
-            margin-top: 60px;
-            color: #999;
+        /* 공간 프로그램 (Zoning) */
+        .space-program {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+            margin-top: 30px;
         }
-
-        /* 모바일 화면 대응 */
-        @media (max-width: 600px) {
-            .info-grid { grid-template-columns: 1fr; } /* 모바일은 1줄로 */
-            .project-header h1 { font-size: 2rem; }
+        .zone-card {
+            background: #fff; border: 1px solid #eee; padding: 25px; border-radius: 12px;
+            transition: 0.3s;
         }
+        .zone-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .zone-tag { font-size: 0.8rem; color: #666; background: #eee; padding: 3px 8px; border-radius: 4px; margin-bottom: 10px; display: inline-block; }
+        .zone-name { font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; display: block; }
+        .zone-desc { font-size: 0.95rem; color: #666; margin: 0; }
 
-	/* 유튜브 영상을 감싸는 박스 (반응형 16:9 비율) */
-        .video-wrap {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 비율 유지의 비밀 */
-            height: 0;
-            margin-bottom: 30px;
-            background: #000;
+        @media (max-width: 768px) {
+            .overview-grid { grid-template-columns: 1fr 1fr; }
+            .space-program { grid-template-columns: 1fr; }
         }
-
-        .video-wrap iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-
     </style>
 </head>
 <body>
+
     <nav>
-        <a href="index.html" class="back-btn">← List</a> 
+        <a href="index.html" class="back-btn">← List</a>
     </nav>
 
     <div class="container">
         
         <header class="project-header">
-            <h1>Sonic Spectrum</h1>
-            <p class="subtitle">자연과 사회의 소리를 시각적으로 표현한 체험형 전시공간</p>
-            
-            <div class="info-grid">
-                <div class="info-item">
-                    <h4>Role (역할)</h4>
-                    <p>공간 디자인</p>
+            <span class="badge">Individual Project</span>
+            <h1 class="project-title">Sonic Spectrum</h1>
+            <p class="project-desc">
+                "자연과 사회의 소리를 시각적으로 표현한 체험형 전시 공간"<br>
+                우울증으로 지친 현대인에게 소리의 파동을 통한 치유의 여정을 제안합니다.
+            </p>
+
+            <div class="overview-grid">
+                <div class="ov-item">
+                    <strong>SITE</strong>
+                    <span>Arko Art Center</span>
                 </div>
-                <div class="info-item">
-                    <h4>Tools (사용 툴)</h4>
-                    <p>SketchUp, Enscape</p>
+                <div class="ov-item">
+                    <strong>TYPE</strong>
+                    <span>Immersive Exhibition</span>
                 </div>
-                <div class="info-item">
-                    <h4>Date (작업 기간)</h4>
-                    <p>2025.03 </p>
+                <div class="ov-item">
+                    <strong>TARGET</strong>
+                    <span>2030 Generation</span>
+                </div>
+                <div class="ov-item">
+                    <strong>TOOLS</strong>
+                    <span>SketchUp, Enscape, V-Ray</span>
                 </div>
             </div>
         </header>
 
-	<section class="content">
-            <img src="work1.jpg" alt="프로젝트 메인 이미지">
-
-            <p>
-                <b>프로젝트 시연 영상</b><br>
-                실제 앱이 구동되는 모습을 아래 영상에서 확인하실 수 있습니다.
-            </p>
-
-            <video src="my_video.mp4" controls muted autoplay playsinline style="width: 100%; border-radius: 8px; margin-bottom: 30px; border: 1px solid #eee;">
-                죄송합니다. 브라우저가 이 동영상 형식을 지원하지 않습니다.
-            </video>
-
-            <p>
-                <b>디자인 의도</b><br>
-                사용자가 메뉴를 고르고 결제하기까지의 단계를 5단계에서 3단계로 줄이는 것을 목표로 했습니다.
-            </p>
-        </section>
+        <img src="sonic_main.jpg" alt="Sonic Spectrum 메인 투시도" class="full-img">
+        <p class="caption">Perspective : 불시착한 열차와 자연이 뒤섞인 공간</p>
+        <div class="audio-container" style="
+            text-align: center; 
+            background-color: transparent; /* 배경색 제거 (투명) */
             
-            <p>
-                <b>3. 결과 및 성과</b><br>
-                프로토타입 테스트 결과, 사용자들의 작업 수행 시간이 평균 20% 단축되었습니다.
-                이 프로젝트를 통해 Figma의 오토 레이아웃 기능을 능숙하게 다룰 수 있게 되었습니다.
+            /* [핵심] 위아래에만 녹색 선을 긋고 좌우는 뚫어둠 */
+            border-top: 2px solid #2E7D32;
+            border-bottom: 2px solid #2E7D32;
+            border-left: none;
+            border-right: none;
+            
+            border-radius: 0; /* 모서리 둥글기 제거 (직선 강조) */
+            padding: 30px 0; /* 선과 내용 사이 간격 */
+            margin: 60px 0; /* 위아래 여백 */
+            width: 100%; /* 가로로 꽉 차게 */
+            ">
+            
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <span style="color: #2E7D32; font-weight: 800; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase;">
+                    Sound Track
+                </span>
+                
+                <p style="font-size: 0.95rem; color: #666; margin: 0 0 20px 0;">
+                    전시 공간의 앰비언트 사운드 (Ambient Sound)
+                </p>
+                
+                <audio controls style="width: 100%; max-width: 500px; height: 40px;">
+                    <source src="sonic_sound.mp3" type="audio/mpeg">
+                    브라우저가 오디오를 지원하지 않습니다.
+                </audio>
+            </div>
+        </div>
+
+        <section>
+            <h2 class="section-title">Background & Problem</h2>
+            <div class="text-box">
+                <span class="sub-title">"현대인의 마음을 치유하는 소리"</span>
+                <p>
+                    2024년 기준 우울증 환자는 2020년 대비 약 32.9% 급증하며 가파른 증가세를 보이고 있습니다.
+                    특히 학업과 취업난을 겪는 2030 청년 세대의 정신 건강 문제가 대두되고 있습니다.
+                </p>
+                <p>
+                    연구에 따르면 새소리, 물 흐르는 소리 등 <b>자연의 소리(ASMR)</b>는 스트레스 호르몬을 감소시키고 
+                    심리적 안정을 찾는 데 탁월한 효과가 있습니다. 이에 착안하여 약물 치료가 아닌, 
+                    <b>시각과 청각을 결합한 보완재로서의 전시 공간</b>을 기획했습니다.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Design Concept</h2>
+            <p style="font-size: 1.2rem; font-weight: bold; color: #222; margin-bottom: 20px;">
+                "불시착한 시공간 열차 (The Crashed Train in Space-time)"
             </p>
+            <p style="color: #555; margin-bottom: 40px;">
+                현대인의 우울증을 <b>'시공간을 여행하다 불시착한 열차'</b>에 은유했습니다.<br>
+                파괴된 인공물(열차)과 무질서한 자연이 뒤섞인 불완전한 공간 속에서, 
+                관람객은 소리와 빛을 연결하는 매개체가 되어 치유와 재탄생의 과정을 체험하게 됩니다.
+            </p>
+            <img src="sonic_concept.jpg" alt="컨셉 다이어그램" class="full-img">
+            <p class="caption">Concept Image : 파괴된 과거에서 정화로 이어지는 서사적 여정</p>
+        </section>
+
+        <section>
+            <h2 class="section-title">Space Program & Isometric</h2>
+            <img src="sonic_iso.jpg" alt="아이소메트릭" class="full-img">
+            
+            <div class="space-program">
+                
+                <div>
+                    <h3 style="border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px;">1F : Awareness (자각)</h3>
+                    
+                    <div class="zone-card" style="margin-bottom: 20px;">
+                        <span class="zone-tag">Intro</span>
+                        <span class="zone-name">Display Melody</span>
+                        <p class="zone-desc">자연물의 소리와 인공물의 소리를 동시에 경험하며 불협화음 속에서 내면을 마주하는 공간</p>
+                    </div>
+
+                    <div class="zone-card">
+                        <span class="zone-tag">Transition</span>
+                        <span class="zone-name">Display Rhythm</span>
+                        <p class="zone-desc">1층과 2층을 연결하는 전이 공간. 높은 곳에서 떨어지는 폭포 소리와 영상물을 통해 정화의 단계로 진입</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px;">2F : Healing (치유)</h3>
+
+                    <div class="zone-card" style="margin-bottom: 20px;">
+                        <span class="zone-tag">Main Hall</span>
+                        <span class="zone-name">Display Harmony</span>
+                        <p class="zone-desc">전시의 클라이막스. 천이 바람에 흔들리는 소리와 물소리가 공명하며 완전한 조화를 이루는 치유의 공간</p>
+                    </div>
+
+                    <div class="zone-card">
+                        <span class="zone-tag">Rest & Archive</span>
+                        <span class="zone-name">Cafeteria & MD Store</span>
+                        <p class="zone-desc">전시의 여운을 즐기는 휴식 공간 및 도서관 형태의 '기억 아카이브' (MD Store)</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+       <section>
+            <h2 class="section-title">Perspective Details</h2>
+            
+            <div style="text-align: center; margin-bottom: 20px; background-color: #f9f9f9; padding: 40px 0; border-radius: 8px;">
+                <video autoplay muted loop playsinline 
+                       style="max-width: 500px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <source src="sonic_rhythm.mp4" type="video/mp4">
+                    브라우저가 동영상을 지원하지 않습니다.
+                </video>
+            </div>
+            <p class="caption">Display Rhythm : 폭포 영상과 소리가 쏟아지는 전이 공간 (Media Wall)</p>
+
+            <img src="sonic_harmony.jpg" alt="Display Harmony 메인 공간" class="full-img">
+            <p class="caption">Display Harmony : 자연의 소리와 빛이 조화를 이루는 공간</p>
+
+            <img src="sonic_cafe.jpg" alt="Cafeteria 렌더링" class="full-img">
+            <p class="caption">Cafeteria : 편안한 우드 톤과 식재가 어우러진 휴식 공간</p>
         </section>
 
     </div>
-
-    <footer>
-        <p>© 2025 My Portfolio. All rights reserved.</p>
-    </footer>
 
 </body>
 </html>
