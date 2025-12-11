@@ -3,140 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나의 포트폴리오</title>
+    <title>김려진 | Portfolio</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="icon" type="image/png" href="favicon.png">
+    
     <style>
-        /* 1. 전체적인 스타일 설정 */
+        /* 2. 전체 스타일 */
         body {
-            font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+            font-family: 'Pretendard', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
+            word-break: keep-all; /* 한글 줄바꿈 예쁘게 */
         }
 
-        /* 2. 상단 헤더 */
+       /* 3. 헤더 (수정됨: 이미지 배경 적용) */
         header {
             text-align: center;
-            padding: 60px 20px;
-            background-color: #fff;
+            /* 높이를 조금 더 키워서 이미지가 시원하게 보이게 */
+            padding: 140px 20px 100px; 
+            
+            /* [핵심 코드] 배경 이미지 설정 */
+            /* linear-gradient는 사진 위에 검은색 반투명 막을 씌워서 글씨를 잘 보이게 해줍니다 */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hero-bg.jpg');
+            background-size: cover; /* 이미지가 찌그러지지 않고 영역을 꽉 채움 */
+            background-position: center; /* 이미지의 중앙을 보여줌 */
+            
+            /* 배경이 어두워졌으니 글씨는 밝게 변경 */
+            color: #fff;
         }
         header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
+            font-size: 3.5rem; /* 제목을 좀 더 크게 */
+            margin: 0 0 15px 0;
+            letter-spacing: -0.5px;
+            color: #fff; /* 흰색으로 변경 */
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3); /* 글씨 그림자로 가독성 높이기 */
         }
         header p {
-            color: #666;
-            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8); /* 약간 투명한 흰색 */
+            font-size: 1.3rem;
+            margin-bottom: 40px;
         }
 
-        /* 3. 프로젝트 갤러리 */
+        /* 버튼도 배경에 맞춰 흰색 스타일로 변경 */
+        .btn-about {
+            display: inline-block;
+            padding: 12px 32px;
+            border: 2px solid #fff; /* 흰색 테두리 */
+            border-radius: 50px;
+            text-decoration: none;
+            color: #fff; /* 흰색 글씨 */
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background-color: rgba(0,0,0,0.2); /* 버튼 배경 살짝 어둡게 */
+        }
+        .btn-about:hover {
+            background-color: #fff;
+            color: #333; /* 마우스 올리면 반전 */
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(255,255,255,0.3);
+        }
+
+        /* 4. 갤러리 레이아웃 (수정됨) */
         .gallery {
-            max-width: 1200px;
+            /* 여기가 핵심입니다! 1200px -> 1600px로 변경 */
+            max-width: 1500px; 
+            
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 20px 100px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 20px;
+            /* 카드의 최소 크기도 320px -> 380px 정도로 키우면 이미지가 더 잘 보입니다 */
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+            gap: 40px; 
         }
 
-        /* 4. 개별 프로젝트 카드 */
+        /* 5. 카드 디자인 */
         .card {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-            cursor: pointer; /* 마우스를 올리면 손가락 모양으로 변경 */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none; /* 링크 밑줄 제거 */
+            color: inherit; /* 글자색 상속 */
+            display: block; /* a태그를 박스처럼 만듦 */
         }
         
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px); /* 위로 붕 뜨는 효과 */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
         }
 
-        /* [수정됨] 이미지를 꽉 차게 보여주는 스타일 */
+        .card-image-box {
+            width: 100%;
+            height: 240px; /* 이미지 높이 */
+            overflow: hidden; /* 이미지 넘치는 것 자르기 */
+            background-color: #eee;
+        }
+
         .card-image {
             width: 100%;
-            height: 200px; /* 카드의 이미지 높이 고정 */
-            object-fit: cover; /* 이미지가 찌그러지지 않고 꽉 차게 조절 */
-            display: block;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        /* 마우스 올리면 이미지 확대 */
+        .card:hover .card-image {
+            transform: scale(1.05);
         }
 
         .card-info {
-            padding: 20px;
+            padding: 25px;
         }
-        .card-info h3 { margin: 0 0 10px 0; font-size: 1.2rem; }
-        .card-info p { margin: 0; color: #777; font-size: 0.9rem; line-height: 1.5; }
+        
+        /* 태그 (Category) */
+        .card-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #666;
+            background: #f0f0f0;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
 
-        /* 5. 하단 푸터 */
+        .card-info h3 { 
+            margin: 0 0 10px 0; 
+            font-size: 1.4rem; 
+            font-weight: bold;
+        }
+        .card-info p { 
+            margin: 0; 
+            color: #777; 
+            font-size: 0.95rem; 
+            line-height: 1.6; 
+        }
+
+        /* 6. 푸터 */
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 60px 20px;
+            border-top: 1px solid #eee;
             color: #999;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+            background-color: #fff;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>My Portfolio</h1>
-        <p>안녕하세요, 디자이너 김려진의 포트폴리오입니다.</p>
+    <header style="position: relative; height: 600px; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center;">
         
-        <a href="about.html" style="
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            border: 1px solid #333;
-            border-radius: 30px;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            transition: all 0.3s;
-        " onmouseover="this.style.backgroundColor='#333'; this.style.color='#fff';" 
-           onmouseout="this.style.backgroundColor='transparent'; this.style.color='#333';">
-            About Me →
-        </a>
+        <video autoplay muted loop playsinline 
+               style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: brightness(0.6);">
+            <source src="main-video.mp4" type="video/mp4">
+            <p>브라우저가 동영상을 지원하지 않습니다.</p>
+        </video>
+        
+        <div style="position: relative; z-index: 1;">
+            <h1 style="font-size: 3.5rem; margin: 0 0 15px 0; letter-spacing: -1px; color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">RYEOJIN KIM</h1>
+            <p style="font-size: 1.3rem; margin-bottom: 40px; color: rgba(255,255,255,0.9);">공간과 사람을 잇는 디자이너</p>
+            
+            <a href="about.html" class="btn-about" style="
+                display: inline-block; padding: 12px 32px; border: 1px solid #fff; border-radius: 50px; 
+                text-decoration: none; color: #fff; font-weight: bold; background-color: rgba(255,255,255,0.1); transition: 0.3s;
+                backdrop-filter: blur(5px);
+            " onmouseover="this.style.background='white'; this.style.color='#333'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.color='white'">
+                About Me →
+            </a>
+        </div>
     </header>
 
-<section class="gallery">
+    <section class="gallery">
         
-        <article class="card">
-            <a href="project1.html">
-                <img src="work1.jpg" alt="프로젝트 1 이미지" class="card-image">
-            </a>
-            
-            <div class="card-info">
-                <h3><a href="project1.html" style="text-decoration: none; color: inherit;">Sonic Spectrum</a></h3>
-                <p>자연과 사회의 소리를 시각적으로 표현한 체험형 전시공간</p>
+        <a href="project1.html" class="card">
+            <div class="card-image-box">
+                <img src="work1.jpg" alt="졸업전시 프로젝트" class="card-image">
             </div>
-        </article>
-
-        <article class="card">
-            <a href="project2.html">
-                <img src="work2.jpg" alt="프로젝트 2 이미지" class="card-image">
-            </a>
             <div class="card-info">
-                <h3>Bloom Cycle</h3>
-                <p>식물과 사람이 교류하고 성장하는, 도심 속 라이프 스타일 복합문화공간</p>
+                <span class="card-tag">Interior Design</span>
+                <h3>졸업전시 아이덴티티 & 도록 디자인</h3>
+                <p>제OO회 실내디자인학과 졸업전시회 메인 그래픽 및 홍보물 편집 총괄 (2025)</p>
             </div>
-        </article>
+        </a>
 
-        <article class="card">
-            <a href="project3.html">
-                <img src="work3.jpg" alt="프로젝트 3 이미지" class="card-image">
-            </a>
+        <a href="project2.html" class="card">
+            <div class="card-image-box">
+                <img src="work2.jpg" alt="공간 디자인 프로젝트" class="card-image">
+            </div>
             <div class="card-info">
-                <h3>브랜드 로고 디자인</h3>
-                <p>친환경 카페 브랜드의 아이덴티티를 담은 로고 디자인입니다.</p>
+                <span class="card-tag">Interior Design</span>
+                <h3>주거 공간 리모델링 프로젝트</h3>
+                <p>사용자의 라이프스타일을 반영한 30평대 아파트 공간 기획 및 설계 (2024)</p>
             </div>
-        </article>
+        </a>
 
+        <a href="project3.html" class="card">
+            <div class="card-image-box">
+                <img src="work3.jpg" alt="졸업전시 도록 내지 디자인" class="card-image">
+            </div>
+            <div class="card-info">
+                <span class="card-tag">Editorial Design</span>
+                <h3>졸업전시 도록 내지 디자인</h3>
+                <p> 협성대학교 제 28회 실내디자인학과 졸업전시회 편집팀 (2025)</p>
+            </div>
+        </a>
 
         </section>
 
     <footer>
-        <p>Contact: rjkim0111@gmail..com</p>
+        <p>© 2025 Ryeojin Kim. All rights reserved.</p>
+        <p>Contact: rjkim0111@gmail.com</p>
     </footer>
 
 </body>
